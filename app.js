@@ -4,7 +4,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 
-const port = process.env.PORT || 5000;  // Define uma porta padrão
+const port = process.env.PORT || 5000; // Define uma porta padrão
 
 const app = express();
 
@@ -23,5 +23,5 @@ const router = require("./src/routes/Router.js");
 app.use(router);
 
 app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
+  console.log(`Servidor rodando na porta ${port}`);
 });
