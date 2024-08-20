@@ -7,7 +7,7 @@ const conn = async () => {
     const dbConn = await mongoose.connect(
       `mongodb+srv://${dbUser}:${dbPassword}@cluster0.8wvwwc0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
     );
-    console.log("CONNECTOU!!!");
+    console.log("CONNECTOU AO BANCO!!!");
   } catch (error) {
     console.log(error);
   }

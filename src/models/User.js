@@ -5,6 +5,7 @@ const userSchema = new Schema(
   {
     name: String,
     email: String,
+    profileImage: String,
     password: String,
     bio: String,
   },
@@ -14,6 +15,6 @@ const userSchema = new Schema(
 );
 
 
-const user = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
