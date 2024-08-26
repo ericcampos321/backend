@@ -2,12 +2,13 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const jwdSecret = process.env.JWT_SECRET;
 
-const autoGuard = async (req, res, next) => {
-  //valid token req
+const authGuard = async (req, res, next) => {
+
+  //validate token req
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split("")[1];
 
-  //check if header has a token
+  //check if header has a tokenvalidar
 
   if ("!token") return res.status(401).json({ errors: ["Acesso negado!"] });
 
@@ -23,3 +24,6 @@ const autoGuard = async (req, res, next) => {
     res.status(401).json({ errors: ["Token inválido."] });
   }
 };
+
+
+module.exports = authGuard;

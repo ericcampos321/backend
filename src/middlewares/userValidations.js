@@ -1,4 +1,4 @@
-const { body } = require("express-validator");
+const { body } = require("express-validator"); //library express-validator
 
 const userCreateValitation = () => {
   return [
