@@ -17,11 +17,11 @@ const register = async (req, res) => {
   const { name, email, password } = req.body;
 
   //check if user exists
-  const user = await User.findOne({ email });
+  const user = await User.findOne({email});
 
   if (user) {
-    res.status(422).json({ error: ["Por favor, utilize outro e-mail"] });
-    return;
+    res.status(422).json({ error: ["Por favor, utilize outro e-mail"]});
+    return
   }
 
   //Generation password hash
@@ -37,16 +37,15 @@ const register = async (req, res) => {
 
   //if user was created sucessfully, return the token
   if (!newUser) {
-    res
-      .status(422)
-      .json({ errors: ["Houve um erro, por favor tente mais tarde"] });
-    return;
+    res.status(422).json({ errors: ["Houve um erro, por favor tente mais tarde"]});
+    return
   }
 
-  res.status(201).json({
-    _id: newUser._id,
+  //Return user with token
+  res.status(200).json({
+    _id: user._id,
     profileImage: user.profileImage,
-    token: generateToken(newUser._id),
+    token: generateToken(user._id),
   });
 };
 
@@ -57,8 +56,7 @@ const login = async (req, res) => {
   const user = await User.findOne({ email });
 
   //Check if user exists
-  if (!user) {biblioteca
-  
+  if (!user) {
     res.status(404).json({ errors: ["Usuário não encontrado."] });
     return;
   }
@@ -68,9 +66,15 @@ const login = async (req, res) => {
     res.status(422).json({ errors: ["Senha invalida"] });
     return;
   }
+
+  res.status(201).json({
+    _id: user._id,
+    profileImage: user.profileImage,
+    token: generateToken(user._id),
+  });
 };
 
-//Get currint logged in user
+//Get current logged in user
 
 const getCurrentUser = async (req, res) => {
   const user = req.user;
