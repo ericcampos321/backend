@@ -43,9 +43,9 @@ const register = async (req, res) => {
 
   //Return user with token
   res.status(200).json({
-    _id: user._id,
-    profileImage: user.profileImage,
-    token: generateToken(user._id),
+    _id: newUser._id,
+    profileImage: newUser.profileImage,
+    token: generateToken(newUser._id),
   });
 };
 
