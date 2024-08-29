@@ -37,10 +37,29 @@ const loginValidation = () => {
       .isEmail()
       .withMessage("Insira um e-mail válido."),
     body("password").isString().withMessage("A senha é Obrigatória"),
-  ]
-}
+  ];
+};
+
+/**
+ * Valida o corpo da requisição de um serviço para atualizar um usuário
+ * O nome e a senha s o opcionais, mas se forem informados,
+ * precisam ter no m nimo 3 caracteres e 5 caracteres, respectivamente.
+ */
+const userUpdateValidation = () => {
+  return [
+    body("name")
+      .optional()
+      .isLength({ min: 3 })
+      .withMessage("O nome precisa ter no minimo 3 caracteres."),
+    body("password")
+      .optional()
+      .isLength({ min: 5 })
+      .withMessage("A senha precisa ter no minimo 5 caracteres!"),
+  ];
+};
 
 module.exports = {
   userCreateValitation,
   loginValidation,
+  userUpdateValidation,
 };
