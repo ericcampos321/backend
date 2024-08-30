@@ -96,7 +96,7 @@ const update = async (req, res) => {
 
     // Get the user from the ID
     const reqUser = req.user;
-    const userId = new mongoose.Types.ObjectId(reqUser._id);
+    const userId = new mongoose.Types.ObjectId(reqUser._id.toString());
     const user = await User.findById(userId).select('-password');
 
     if (!user) {
@@ -135,9 +135,28 @@ const update = async (req, res) => {
   }
 };
 
+//Getr user by ID
+const getUserById = async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const user = await User.findById(id).select("-password");
+
+    if (!user) {
+      res.status(404).json({ errors: ["Usuario não encontrado"] })
+      return;
+    }
+    res.status(200).json(user);
+
+  } catch (error) {
+    res.status(422).json({ errors: ["Usuario não encontrado"] })
+  };
+};
+
 module.exports = {
   register,
   login,
   getCurrentUser,
   update,
+  getUserById,
 };
