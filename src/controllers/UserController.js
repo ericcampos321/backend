@@ -2,6 +2,7 @@ const User = require("../models/User");
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 
 const jwtSecret = process.env.JWT_SECRET;
 
@@ -17,10 +18,10 @@ const register = async (req, res) => {
   const { name, email, password } = req.body;
 
   //check if user exists
-  const user = await User.findOne({email});
+  const user = await User.findOne({ email });
 
   if (user) {
-    res.status(422).json({ error: ["Por favor, utilize outro e-mail"]});
+    res.status(422).json({ error: ["Por favor, utilize outro e-mail"] });
     return
   }
 
@@ -37,7 +38,7 @@ const register = async (req, res) => {
 
   //if user was created sucessfully, return the token
   if (!newUser) {
-    res.status(422).json({ errors: ["Houve um erro, por favor tente mais tarde"]});
+    res.status(422).json({ errors: ["Houve um erro, por favor tente mais tarde"] });
     return
   }
 
@@ -76,7 +77,6 @@ const login = async (req, res) => {
 
 //Get current logged in user
 
-
 const getCurrentUser = async (req, res) => {
   const user = req.user;
 
@@ -85,7 +85,54 @@ const getCurrentUser = async (req, res) => {
 
 // Update an user
 const update = async (req, res) => {
-  res.send("Update an user")
+  try {
+    const { name, password, bio } = req.body;
+    let profileImage = null;
+
+    // Check if a file has been uploaded
+    if (req.file) {
+      profileImage = req.file.filename;
+    }
+
+    // Get the user from the ID
+    const reqUser = req.user;
+    const userId = new mongoose.Types.ObjectId(reqUser._id);
+    const user = await User.findById(userId).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
+
+    // Update the name if provided
+    if (name) {
+      user.name = name;
+    }
+
+    // Update the password if provided
+    if (password) {
+      const salt = await bcrypt.genSalt();
+      const passwordHash = await bcrypt.hash(password, salt);
+      user.password = passwordHash;
+    }
+
+    // Update the profile image if provided
+    if (profileImage) {
+      user.profileImage = profileImage;
+    }
+
+    // Update the bio if provided
+    if (bio) {
+      user.bio = bio;
+    }
+
+    // Save the changes
+    await user.save();
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao atualizar o perfil' });
+  }
 };
 
 module.exports = {

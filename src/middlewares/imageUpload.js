@@ -3,15 +3,6 @@ const path = require("path");
 
 //Destination to store
 const imageStorage = multer.diskStorage({
-  /**
-   * Define o destino para upload de imagens.
-   * A pasta de destino   dinamica, de acordo com a rota que o usuario est  acessando.
-   * Se a rota incluir "users", a pasta de destino ser  "uploads/users".
-   * Se a rota incluir "photos", a pasta de destino ser  "uploads/photos".
-   * @param {Object} req - Requisi o atual.
-   * @param {Object} file - Arquivo que est  sendo enviado.
-   * @param {Function} cb - Fun o de callback.
-   */
   destination: (req, file, cb) => {
     let folder = "";
 
@@ -40,5 +31,5 @@ const imageUpload = multer({
 })
 
 module.exports = {
-  imageUpload
+  imageUpload,
 }
