@@ -40,11 +40,9 @@ const loginValidation = () => {
   ];
 };
 
-/**
- * Valida o corpo da requisição de um serviço para atualizar um usuário
- * O nome e a senha s o opcionais, mas se forem informados,
- * precisam ter no m nimo 3 caracteres e 5 caracteres, respectivamente.
- */
+  /*Valida o corpo da requisição de um serviço para atualizar um usuário
+  O nome e a senha são opcionais, mas se forem informados,
+  precisam ter no m nimo 3 caracteres e 5 caracteres, respectivamente.*/
 const userUpdateValidation = () => {
   return [
     body("name")
