@@ -1,4 +1,4 @@
-const Photo = require("..models/Photos");
+const Photo = require("../models/Photo");
 
 const mongoose = require("mongoose");
 
@@ -8,11 +8,11 @@ const insertPhoto = async (req, res) => {
   const { title } = req.body;
   const image = req.file.filename;
 
-  console.log("req.body");
+  console.log(req.body);
 
   res.send("Photo insert");
 };
 
 module.exports = {
   insertPhoto,
-}
+};
