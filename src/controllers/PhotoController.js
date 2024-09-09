@@ -2,7 +2,7 @@ const Photo = require("../models/Photo");
 const User = require("../models/User")
 const mongoose = require("mongoose");
 
-// Insert a photo, with an user realted to ir
+// Insert a photo, with an user realted to it
 
 const insertPhoto = async (req, res) => {
   const { title } = req.body;
@@ -25,13 +25,24 @@ const insertPhoto = async (req, res) => {
     res.status(422).json({
       error: ["Houve um erro, por favor tente mais tarde"],
     });
+    return;
   }
 
   res.status(201).json(newPhoto);
 
-
-  res.send("Photo insert");
 };
+
+// Remove a photo from DB
+const deletePhoto = async (req, res) => {
+  const { id } = req.params;
+
+  const reqUser = req.user;
+
+  const photo = Photo.findById(mongoose.Types.ObjectId(id));
+
+  // Check if photo exists
+
+}
 
 module.exports = {
   insertPhoto,
