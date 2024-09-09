@@ -6,7 +6,7 @@ const validate = (req, res, next) => {
     if (errors.isEmpty()) {
         return next();
     }
-
+    
     const extractedErros = [];
 
     errors.array().map((err) => extractedErros.push(err.msg));

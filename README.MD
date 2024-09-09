@@ -1,4 +1,4 @@
-# Nome do Projeto
+# resgate arcadafé
 
 O Projeto de Publicação de Resgate de Animais é uma plataforma dedicada a ajudar instituições e ao público na publicação e gerenciamento de resgates de animais. Este sistema permite que instituições de resgate forneçam informações detalhadas sobre os trajetos de resgate e possibilita que o público poste fotos e descrições sobre resgates realizados.
 
