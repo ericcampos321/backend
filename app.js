@@ -13,7 +13,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Configuração do CORS
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({
+  credentials: true,
+  origin: "http://localhost:3000"
+}));
 
 //DB connection
 require("./src/config/db.js");
