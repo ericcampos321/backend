@@ -17,7 +17,7 @@ const insertPhoto = async (req, res) => {
     image,
     title,
     userId: user._id,
-    username: user.name,
+    userName: user.name,
   });
 
   // If photo was created sucessfully, return the token
@@ -39,8 +39,8 @@ const deletePhoto = async (req, res) => {
   const reqUser = req.user;
 
   try {
-    const photo = await Photo.findById(mongoose.Types.ObjectId(id));
-
+    const photo = await Photo.findByIdAndDelete(id);
+  
     // Check if photo exists
     if (!photo) {
       res.status(404).json({
@@ -57,8 +57,7 @@ const deletePhoto = async (req, res) => {
       return;
     }
 
-    await Photo.findByIdAndDelete(photo._id);
-
+    // if photo was deleted sucessfully
     res.status(200)
       .json({ id: photo._id, message: "Foto removida com sucesso!" });
   } catch (error) {
