@@ -49,7 +49,7 @@ const deletePhoto = async (req, res) => {
       return;
     }
 
-    // Check if photo belongs to userfiltrar sequencia de serial que esta faltando no excel
+    // Check if photo belongs to user
     if (!photo.userId.equals(reqUser._id)) {
       res.status(422).json({
         errors: ["Ocorreu um erro, tente novamente mais tarde!"],
@@ -73,7 +73,7 @@ const deletePhoto = async (req, res) => {
 const getAllPhotos = async (req, res) => {
 
   const photos = await Photo.find({}).sort([['createdAt', -1]])
-  .exec();
+    .exec();
 
   return res.status(200).json(photos);
 };
@@ -83,8 +83,8 @@ const getAllPhotos = async (req, res) => {
 const getUserPhotos = async (req, res) => {
   const { id } = req.params;
 
-  const photos = await Photo.find({userId: id}).sort([['createdAt', -1]])
-  .exec();
+  const photos = await Photo.find({ userId: id }).sort([['createdAt', -1]])
+    .exec();
 
   return res.status(200).json(photos);
 }
