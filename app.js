@@ -4,15 +4,15 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 
-const port = process.env.PORT || 5000; // Define uma porta padrão
+const port = process.env.PORT || 5000;
 
 const app = express();
 
-// Configurações para JSON e form data
+// Config JSON and dates
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Configuração do CORS
+// Config cors
 app.use(cors({
   credentials: true,
   origin: "http://localhost:3000"
