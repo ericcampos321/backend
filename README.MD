@@ -1,6 +1,14 @@
 # resgate arcadafé
 
-O Projeto de Publicação de Resgate de Animais é uma plataforma dedicada a ajudar instituições e ao público na publicação e gerenciamento de resgates de animais. Este sistema permite que instituições de resgate forneçam informações detalhadas sobre os trajetos de resgate e possibilita que o público poste fotos e descrições sobre resgates realizados.
+O Projeto de Formulário de Animais do Abrigo Veterinário é uma plataforma dedicada a ajudar abrigos e o público a registrar e gerenciar a chegada de animais. Este sistema permite que os abrigos forneçam informações detalhadas sobre os animais resgatados, como condições de saúde e histórico, além de permitir que o público contribua com fotos e descrições dos animais ao serem acolhidos.
+
+## Estrutura
+[] Cadastro de Users
+[] Autenticação de Users
+[] Cadastro de Permissões
+[] Cadastro de Produtos
+[] Conexão User_Roles
+[] Conexão Permission_Roles
 
 ## Tecnologias Utilizadas
 
