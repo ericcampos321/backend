@@ -9,7 +9,7 @@ const PermissionSchema = new mongoose.Schema({
     default: "user"
   },
   description: {
-    type: [String],
+    type: String,
     required: true
   },
   permissions: {
@@ -17,7 +17,7 @@ const PermissionSchema = new mongoose.Schema({
     required: true
   },
   createdAt: {
-    type: date,
+    type: Date,
     default: Date.now
   }
 });
