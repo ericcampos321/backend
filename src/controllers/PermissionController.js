@@ -1,27 +1,18 @@
-const { Permission } = require("../models");
+const { permissionRepository } = require("../repository/PermissionRepository");
 
 // Create a new permission
 const createPermission = async (req, res) => {
 
   try {
-    const { role, description, permissions } = req.body;
-    const newPermission = await Permission.create({ role, description, permissions });
+    const permissionData = req.body;
 
-    if (!newPermission) {
-      res.status(422).json({ errors: ["Houve um erro, por favor tente mais tarde"] });
-      return;
-    }
-    
+    const newPermission = await permissionRepository.createPermission(permissionData);
     res.status(201).json(newPermission);
-
   } catch (error) {
-    res.status(500).json({ errors: ["Erro no servidor, tente novamente mais tarde!"] });
+    res.status(500).json({ errors: [error.message] });
   }
 };
-
 
 module.exports = {
   createPermission,
 }
-
-// Get all permissions

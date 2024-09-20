@@ -1,17 +1,12 @@
-const { Permission } = require("../models");
+const Permission = require("../models/permission");
 
-// Create a new permission
-const createPermission = async (permissionData) => {
-
+const permissionRepository = async (permissionData) => {
   try {
-    const newPermission = await Permission.create(permissionData);
-    return newPermission;
+    const newPermission = await Permission.create(permissionData); 
+    return newPermission; 
   } catch (error) {
-    console.log(error);
-    throw error;
+    console.log(error); 
   }
 };
 
-module.exports = {
-  createPermission,
-}
+module.exports = permissionRepository;
