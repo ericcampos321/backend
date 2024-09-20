@@ -1,4 +1,4 @@
-const Permission = require("../models/permission");
+const Permission = require("../models/Permission");
 
 const permissionRepository = async (permissionData) => {
   try {
@@ -9,4 +9,6 @@ const permissionRepository = async (permissionData) => {
   }
 };
 
-module.exports = permissionRepository;
+module.exports = {
+  permissionRepository,
+}
