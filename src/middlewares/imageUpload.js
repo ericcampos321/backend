@@ -2,12 +2,7 @@ const multer = require("multer");
 const path = require("path");
 
 const imageStorage = multer.diskStorage({
-  /**
-   * Define the destination to store the images, based on the request route
-   * @param {Express.Request} req - The Express request object
-   * @param {Multer.File} file - The Multer file object
-   * @param {Function} cb - The callback function
-   */
+  // Define o caminho de armazenamento das imagens
   destination: (req, file, cb) => {
     let folder = "";
 

@@ -3,15 +3,16 @@ const { Schema } = mongoose;
 
 const photoSchema = new Schema(
     {
-        image: String,
-        title: String,
-        likes: [String],
-        comments: [String],
+        image: { type: String, required: true },
+        title: { type: String, required: true },
+        likes: [{ type: String, ref: 'User' }],
+        comments: [{ type: String, ref: 'Comment' }],
         userId: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
+            required: true
         },
-          userName: String,
+          userName: { type: String, required: true },
     },
     {
         timestamps: true
